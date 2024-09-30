@@ -98,5 +98,5 @@ class GameStateNode:
                         self.children.append(child)
                     else:
                         self.children.append(None)
-                if len(self.possibilities) == 0:
+                if len(self.possibilities) == 0: #If all spaces filled then also terminal
                     self.terminal = True
