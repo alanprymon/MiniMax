@@ -1,6 +1,6 @@
-#X who is always first is 1 and O who is always second is -1
+#first is 1 and second is -1
 class GameStateNode:
-    #If who is 0 then it builds the tree and action doesn't matter
+    #When building the tree feed who 0 and action doesn't matter what it is as long as its between 0-8
     def __init__(self, parent_state : list, action : int, who : int):
 
         self.game_state = parent_state.copy()
@@ -11,7 +11,7 @@ class GameStateNode:
         self.children = []
         self.whos_turn = -1 * who
 
-        if who == 1: #X's turn check all possible win states
+        if who == 1: #first's turn check all possible win states
             if self.game_state[0] == 1:
                 if self.game_state[1] == 1:
                     if self.game_state[2] == 1:
@@ -47,7 +47,7 @@ class GameStateNode:
                     if self.game_state[7] == 1:
                         self.terminal = True
                         self.win = 1
-        elif who == -1: #O's turn check all possible win states
+        elif who == -1: #second's turn check all possible win states
             if self.game_state[0] == -1:
                 if self.game_state[1] == -1:
                     if self.game_state[2] == -1:
@@ -83,10 +83,10 @@ class GameStateNode:
                     if self.game_state[7] == -1:
                         self.terminal = True
                         self.win = -1
-        else: #should never be here
+        else:
             if who == 0 and self.game_state == [0,0,0,0,0,0,0,0,0]:
                 self.whos_turn = 1
-            else:
+            else: #should never be here
                 raise AttributeError #Just to error check and make sure it is not getting here
         if who == 0:
             for x in range(9):
