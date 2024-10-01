@@ -182,8 +182,7 @@ if __name__ == '__main__':
                         moves = moves[:-2]
                         invalid = True
                         while invalid:
-                            next_move = input(
-                                'X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            next_move = input('X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
                             if next_move == '0':
                                 exit()
                             elif next_move in moves_possible:
@@ -215,7 +214,6 @@ if __name__ == '__main__':
                 start_text(algo, first, mode)
                 done = False
                 first_person = True
-                #print_game(game, 1)
                 while not done:
                     if not first_person:  # Human, X
                         moves = ''
@@ -226,8 +224,7 @@ if __name__ == '__main__':
                         moves = moves[:-2]
                         invalid = True
                         while invalid:
-                            next_move = input(
-                                'X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            next_move = input('X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
                             if next_move == '0':
                                 exit()
                             elif next_move in moves_possible:
@@ -255,7 +252,6 @@ if __name__ == '__main__':
                 start_text(algo, first, mode)
                 done = False
                 first_person = True
-                # print_game(game, 1)
                 while not done:
                     if not first_person:  # Human, X
                         moves = ''
@@ -266,8 +262,7 @@ if __name__ == '__main__':
                         moves = moves[:-2]
                         invalid = True
                         while invalid:
-                            next_move = input(
-                                'X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            next_move = input('X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
                             if next_move == '0':
                                 exit()
                             elif next_move in moves_possible:
