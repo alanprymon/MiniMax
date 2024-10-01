@@ -88,9 +88,9 @@ def min_value(game_state : tree.GameStateNode) -> (int, int):
 def start_text(algo : str, first : str, mode : str):
     print('Prymon, Alan, A20483983 solution:')
     if algo == '1':
-        print('Alforithm: MiniMax')
+        print('Algorithm: MiniMax')
     else:
-        print('MiniMax with alpha-beta pruning')
+        print('Algorithm: MiniMax with alpha-beta pruning')
     print('First: ' + first)
     if mode == '1':
         print('Mode: human versus computer')
@@ -125,7 +125,6 @@ if __name__ == '__main__':
     global nodes_searched
     nodes_searched = 0
     game = tree.GameStateNode([0, 0, 0, 0, 0, 0, 0, 0, 0], 0, 0)
-    root = game #Only for debugging --------------------------------------------------------------------
     if mode == '1': #human vs computer(1)
         if first == 'X': #X first(X), human vs computer(1)
             if algo == '1': #MiniMax(1), X first(X), human vs computer(1)
