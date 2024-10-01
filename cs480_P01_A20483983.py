@@ -125,9 +125,180 @@ if __name__ == '__main__':
     global nodes_searched
     nodes_searched = 0
     game = tree.GameStateNode([0, 0, 0, 0, 0, 0, 0, 0, 0], 0, 0)
-    root = game #Only for debugging
-    if mode == '1': #human vs computer
-        '1'
+    root = game #Only for debugging --------------------------------------------------------------------
+    if mode == '1': #human vs computer(1)
+        if first == 'X': #X first(X), human vs computer(1)
+            if algo == '1': #MiniMax(1), X first(X), human vs computer(1)
+                start_text(algo, first, mode)
+                done = False
+                first_person = True
+                print_game(game, 1)
+                while not done:
+                    if first_person: #Human, X
+                        moves = ''
+                        moves_possible = []
+                        for x in game.possibilities:
+                            moves += str(x + 1) + ', '
+                            moves_possible.append(str(x + 1))
+                        moves = moves[:-2]
+                        invalid = True
+                        while invalid:
+                            next_move = input('X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            if next_move == '0':
+                                exit()
+                            elif next_move in moves_possible:
+                                invalid = False
+                        game = game.children[int(next_move) - 1]
+                        first_person = False
+                    else:
+                        next_move = mini_max_search(game)
+                        print('O\'s selected move: ' + str(
+                            next_move + 1) + '. Number of search tree nodes generated: ' + str(nodes_searched))
+                        nodes_searched = 0
+                        game = game.children[next_move]
+                        first_person = True
+                    print_game(game, 1)
+                    if game.terminal:
+                        done = True
+                if game.win == -1:
+                    print('O WON')
+                elif game.win == 0:
+                    print('TIE')
+                elif game.win == 1:
+                    print('X WIN')
+                else:
+                    raise EOFError
+            elif algo == '2': #Alpha Beta(2), X first(X), human vs computer(1)
+                start_text(algo, first, mode)
+                done = False
+                first_person = True
+                print_game(game, 1)
+                while not done:
+                    if first_person:  # Human, X
+                        moves = ''
+                        moves_possible = []
+                        for x in game.possibilities:
+                            moves += str(x + 1) + ', '
+                            moves_possible.append(str(x + 1))
+                        moves = moves[:-2]
+                        invalid = True
+                        while invalid:
+                            next_move = input(
+                                'X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            if next_move == '0':
+                                exit()
+                            elif next_move in moves_possible:
+                                invalid = False
+                        game = game.children[int(next_move) - 1]
+                        first_person = False
+                    else:
+                        next_move = alpha_beta_search(game)
+                        print('O\'s selected move: ' + str(next_move + 1) + '. Number of search tree nodes generated: ' + str(nodes_searched))
+                        nodes_searched = 0
+                        game = game.children[next_move]
+                        first_person = True
+                    print_game(game, 1)
+                    if game.terminal:
+                        done = True
+                if game.win == -1:
+                    print('O WON')
+                elif game.win == 0:
+                    print('TIE')
+                elif game.win == 1:
+                    print('X WIN')
+                else:
+                    raise EOFError
+            else:
+                print("ERROR: Not enough/too many/illegal input arguments.")
+                exit()
+        elif first == 'O': #O first(O), human vs computer(1)
+            if algo == '1': #MiniMax(1), O first(O), human vs computer(1)
+                start_text(algo, first, mode)
+                done = False
+                first_person = True
+                #print_game(game, 1)
+                while not done:
+                    if not first_person:  # Human, X
+                        moves = ''
+                        moves_possible = []
+                        for x in game.possibilities:
+                            moves += str(x + 1) + ', '
+                            moves_possible.append(str(x + 1))
+                        moves = moves[:-2]
+                        invalid = True
+                        while invalid:
+                            next_move = input(
+                                'X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            if next_move == '0':
+                                exit()
+                            elif next_move in moves_possible:
+                                invalid = False
+                        game = game.children[int(next_move) - 1]
+                        first_person = True
+                    else:
+                        next_move = mini_max_search(game)
+                        print('O\'s selected move: ' + str(next_move + 1) + '. Number of search tree nodes generated: ' + str(nodes_searched))
+                        nodes_searched = 0
+                        game = game.children[next_move]
+                        first_person = False
+                    print_game(game, -1)
+                    if game.terminal:
+                        done = True
+                if game.win == -1:
+                    print('X WON')
+                elif game.win == 0:
+                    print('TIE')
+                elif game.win == 1:
+                    print('O WIN')
+                else:
+                    raise EOFError
+            elif algo == '2': #Alpha Beta(2), O first(O), human vs computer(1)
+                start_text(algo, first, mode)
+                done = False
+                first_person = True
+                # print_game(game, 1)
+                while not done:
+                    if not first_person:  # Human, X
+                        moves = ''
+                        moves_possible = []
+                        for x in game.possibilities:
+                            moves += str(x + 1) + ', '
+                            moves_possible.append(str(x + 1))
+                        moves = moves[:-2]
+                        invalid = True
+                        while invalid:
+                            next_move = input(
+                                'X\'s move. What is your move (possible moves at the moment are: ' + moves + ' | enter 0 to exit game)?')
+                            if next_move == '0':
+                                exit()
+                            elif next_move in moves_possible:
+                                invalid = False
+                        game = game.children[int(next_move) - 1]
+                        first_person = True
+                    else:
+                        next_move = alpha_beta_search(game)
+                        print('O\'s selected move: ' + str(
+                            next_move + 1) + '. Number of search tree nodes generated: ' + str(nodes_searched))
+                        nodes_searched = 0
+                        game = game.children[next_move]
+                        first_person = False
+                    print_game(game, -1)
+                    if game.terminal:
+                        done = True
+                if game.win == -1:
+                    print('X WON')
+                elif game.win == 0:
+                    print('TIE')
+                elif game.win == 1:
+                    print('O WIN')
+                else:
+                    raise EOFError
+            else:
+                print("ERROR: Not enough/too many/illegal input arguments.")
+                exit()
+        else:
+            print("ERROR: Not enough/too many/illegal input arguments.")
+            exit()
     elif mode == '2': #computer vs computer
         if first == 'X': #computer vs computer, X first
             if algo == '1': #MiniMax(1), X first(X), computer vs computer(2)
